@@ -1,14 +1,16 @@
 <template>
   <div class="main-home">
-    Admin
+    <CardBanner></CardBanner>
   </div>
 </template>
 
 <script>
+import CardBanner from 'src/components/CardBanner.vue';
 
 export default {
   name: 'HomePage',
   components:{
+    CardBanner
   }
 }
 </script>
@@ -16,7 +18,8 @@ export default {
 <style scoped>
 
 .main-home{
-  text-align: end;
+  padding: 20px;
+  height: 100%;
 }
 
 </style>

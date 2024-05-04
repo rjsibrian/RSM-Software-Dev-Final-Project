@@ -22,36 +22,19 @@ namespace CONTROLLER_BASED_API_with_ASP.NET_Core.Controllers
 
         // GET: api/SalesPerformanceView
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<SalePerformanceView>>> GetSalesPerformanceView([FromQuery] string productName = "", [FromQuery] string categoryName = "")
+        public async Task<ActionResult<IEnumerable<SalePerformanceView>>> GetSalesPerformanceView([FromQuery] string productName = "")
         {
-            // Verificar si se proporciona el nombre del producto y/o el nombre de la categoría
-            if (!string.IsNullOrEmpty(productName) && !string.IsNullOrEmpty(categoryName))
+            if (!string.IsNullOrEmpty(productName))
             {
-                // Filtrar por ambos parámetros si ambos están presentes
                 return await _context.SalesPerformanceView
-                    .Where(s => s.ProductName == productName && s.ProductCategory == categoryName)
+                    .Where(s => s.ProductName.Contains(productName))
                     .ToListAsync();
-            }
-            else if (!string.IsNullOrEmpty(productName))
-            {
-                // Filtrar por nombre de producto si solo se proporciona ese parámetro
-                return await _context.SalesPerformanceView
-                    .Where(s => s.ProductName == productName)
-                    .ToListAsync();
-            }
-            else if (!string.IsNullOrEmpty(categoryName))
-            {
-                // Filtrar por nombre de categoría si solo se proporciona ese parámetro
-                return await _context.SalesPerformanceView
-                    .Where(s => s.ProductCategory == categoryName)
-                    .ToListAsync();
+                
             }
             else
             {
-                // Si no se proporcionan parámetros, devolver todas las filas
                 return await _context.SalesPerformanceView.ToListAsync();
             }
         }
-
     }
 }

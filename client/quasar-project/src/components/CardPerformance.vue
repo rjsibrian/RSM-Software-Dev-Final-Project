@@ -7,8 +7,7 @@
   
 <script>
   export default {
-    name: 'CardPerformance',
-    props:['src', 'msg']
+    name: 'CardPerformance'
   };
 </script>
   

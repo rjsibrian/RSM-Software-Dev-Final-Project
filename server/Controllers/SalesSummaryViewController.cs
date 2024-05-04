@@ -22,9 +22,19 @@ namespace CONTROLLER_BASED_API_with_ASP.NET_Core.Controllers
 
         // GET: api/SalesSummaryView
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<SaleSummaryView>>> GetSalesSummaryView()
+        public async Task<ActionResult<IEnumerable<SaleSummaryView>>> GetSalesSummaryView([FromQuery] string productName = "")
         {
-            return await _context.SalesSummaryView.ToListAsync();
+            if (!string.IsNullOrEmpty(productName))
+            {
+                return await _context.SalesSummaryView
+                    .Where(s => s.ProductName.Contains(productName))
+                    .ToListAsync();
+                
+            }
+            else
+            {
+                return await _context.SalesSummaryView.ToListAsync();
+            }
         }
 
     }

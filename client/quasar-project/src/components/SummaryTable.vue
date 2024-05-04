@@ -1,15 +1,17 @@
 <template>
   <div class="q-pa-md">
     <q-table
-      flat bordered
+      flat
+      bordered
       :rows="filteredRows"
       :columns="columns"
       color="primary"
       row-key="id"
-      class="table-cotainer"
+      class="table-container"
     >
-      <template v-slot:top-left>
-        <q-input borderless dense debounce="300" v-model="filter" placeholder="Search by Product Name">
+      <template v-slot:top-left >
+        <q-input borderless dense debounce="300" v-model="filter" 
+        placeholder="Search by Product Name" class="search">
           <template v-slot:append>
             <q-icon name="search" />
           </template>
@@ -74,7 +76,9 @@ export default {
       }
     }
 
-    function exportCsv() {
+    async function exportCsv() {
+      await fetchData();
+
       const content = [columns.map(col => wrapCsvValue(col.label))].concat(
         rows.value.map(row => columns.map(col => wrapCsvValue(
           typeof col.field === 'function' ? col.field(row) : row[col.field === void 0 ? col.name : col.field],
@@ -98,22 +102,22 @@ export default {
       }
     }
 
-    function exportPdf() {
-      const doc = new jsPDF('l', 'pt'); // 'l' para orientación horizontal
+    async function exportPdf() {
+      await fetchData();
 
-      // Título de la tabla
+      const doc = new jsPDF('l', 'pt'); 
+
       doc.setFontSize(18);
       doc.setTextColor(40);
       doc.text('Sales Summary', 40, 30);
-
 
       const head = [columns.map(col => ({ content: col.label, styles: { fillColor: [111, 92, 195] } }))];
 
       doc.autoTable({
         head,
         body: rows.value.map(row => columns.map(col => col.field === 'function' ? col.field(row) : row[col.field])),
-        margin: { top: 60 }, // Margen superior
-        columnStyles: { 0: { cellWidth: 40 } }, // Ancho de la primera columna
+        margin: { top: 60 }, 
+        columnStyles: { 0: { cellWidth: 40 } }, 
       });
       doc.save('table-export.pdf');
     }
@@ -132,12 +136,11 @@ export default {
       return `"${formatted}"`
     }
 
-    fetchData();
-
-    // Filtrar las filas basadas en el término de búsqueda
     const filteredRows = computed(() => {
       return rows.value.filter(row => row.productName.toLowerCase().includes(filter.value.toLowerCase()));
     });
+
+    fetchData();
 
     return {
       columns,
@@ -151,7 +154,7 @@ export default {
 </script>
 
 <style scoped>
-.table-cotainer{
+.table-container{
   border-radius: 10px; 
   padding: 20px;
   border: 1px solid transparent; 
@@ -168,5 +171,12 @@ export default {
   background-color: #6F5CC3; 
   color: white;
   margin-left: 10px; 
+}
+
+.search{
+  background-color: #ECECEF;
+  padding: 1px 5px 1px 5px;
+  border-radius: 10px;
+  width: 500px;
 }
 </style>

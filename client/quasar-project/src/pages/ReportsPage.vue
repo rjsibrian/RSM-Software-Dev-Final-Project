@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import CardSummary from '../components/CardSummary.vue';
 import CardPerformance from 'src/components/CardPerformance.vue';
 
 export default {

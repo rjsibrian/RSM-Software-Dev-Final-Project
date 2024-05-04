@@ -1,6 +1,6 @@
 <template>
     <div class="topbar">
-      <p class="title">AdventureWork Cycle</p>
+      <p class="title">AdventureWorks</p>
     </div>
     
 </template>
