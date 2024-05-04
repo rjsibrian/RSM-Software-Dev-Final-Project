@@ -1,5 +1,4 @@
 <template>
-  <AsideBar></AsideBar>
   <div class="container">
     <TopBar class="topbar"></TopBar>
     <div class="router">
@@ -9,13 +8,11 @@
 </template>
 
 <script>
-import AsideBar from './components/AsideBar.vue'
 import TopBar from './components/TopBar.vue'
 
 export default {
   name: 'App',
   components: {
-    AsideBar,
     TopBar
   }
 }
@@ -32,7 +29,6 @@ html, body{
   display: flex;
   flex-direction: column;
   align-items: end;
-  margin-left: 16%;
   
 }
 

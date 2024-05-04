@@ -31,7 +31,7 @@ h3{
   color: #ffffff;
   font-size: 1.1rem;
   width: 100%;
-  padding-left: 20px;
+  padding-left: 10px;
   border-left: 10px solid #6F5CC3; 
   border-radius: 5px; 
   text-align: start;
