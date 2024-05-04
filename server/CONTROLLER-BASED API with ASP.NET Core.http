@@ -1,0 +1,6 @@
+@CONTROLLER_BASED_API_with_ASP.NET_Core_HostAddress = http://localhost:5243
+
+GET {{CONTROLLER_BASED_API_with_ASP.NET_Core_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\CONTROLLER-BASED API with ASP.NET Core.props" />
+</Project>
