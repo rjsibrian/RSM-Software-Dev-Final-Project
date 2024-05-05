@@ -34,7 +34,7 @@ SELECT
     s.PercentageOfTotalCategorySalesInRegion
 FROM 
 (
-    SELECT TOP 10
+    SELECT TOP 50
         p.Name AS 'ProductName', 
         pc.Name AS 'ProductCategory', 
         sod.LineTotal AS 'TotalSales',
