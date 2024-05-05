@@ -1,0 +1,28 @@
+CREATE VIEW SaleSummaryView
+AS
+SELECT
+CAST(ROW_NUMBER() OVER (ORDER BY soh.SalesOrderID ASC) AS INT) AS Id,
+soh.SalesOrderID 'OrderID', CAST(soh.OrderDate AS date) 'OrderDate', sod.ProductID, p.Name 'ProductName', pc.Name 'ProductCategory',
+sod.UnitPrice, sod.OrderQty, sod.LineTotal, soh.SalesPersonID, CONCAT(Per.FirstName, ' ', Per.LastName) 'SalesPersonName',
+CONCAT(sa.AddressLine1, ', ', sa.City) 'ShippingAddress',
+CONCAT(ba.AddressLine1, ', ', ba.City) 'BillingAddress'
+FROM Sales.SalesOrderHeader soh
+INNER JOIN
+	Sales.SalesOrderDetail sod ON soh.SalesOrderID = sod.SalesOrderID 
+INNER JOIN
+	Production.Product p ON sod.ProductID = p.ProductID 
+INNER JOIN
+	Production.ProductSubcategory psc ON p.ProductSubCategoryID = psc.ProductSubcategoryID
+INNER JOIN
+	Production.ProductCategory pc ON psc.ProductCategoryID = pc.ProductCategoryID
+INNER JOIN
+	Sales.SalesPerson sp ON soh.SalesPersonID = sp.BusinessEntityID
+INNER JOIN
+	Person.Person per ON sp.BusinessEntityID = per.BusinessEntityID
+INNER JOIN
+	Person.Address ba ON soh.BillToAddressID = ba.AddressID
+INNER JOIN 
+	Person.Address sa ON soh.ShipToAddressID = sa.AddressID;
+
+select * from SaleSummaryView;
+drop view SaleSummaryView;
