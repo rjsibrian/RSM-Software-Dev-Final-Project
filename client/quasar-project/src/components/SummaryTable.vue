@@ -8,6 +8,7 @@
       color="primary"
       row-key="id"
       class="table-container"
+      :rows-per-page-options="[20, 40, 60]"
     >
       <template v-slot:top-left >
         <q-input borderless dense debounce="300" v-model="filter" 
