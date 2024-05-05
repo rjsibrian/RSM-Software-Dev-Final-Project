@@ -1,11 +1,11 @@
 # RSM-Software-Dev-Final-Project
 
-## Client Instalation
+## Client Installation
 npm i -g @quasar/cli ----> Run this in the terminal of your system to install de quasar client
 npm i ----> Run this in the terminal of the quasar project (RSM-Software-Dev-Final-Project\client\quasar-project) to install dependencies
 quasar dev ----> Run this to start the client
 
-## Server Instalation
+## Server Installation
 dotnet run ----> Run this in the terminal of the server project (RSM-Software-Dev-Final-Project\server)
 
 ## Requirements
