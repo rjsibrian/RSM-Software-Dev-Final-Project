@@ -1,6 +1,6 @@
 CREATE VIEW SaleSummaryView
 AS
-SELECT TOP 10
+SELECT TOP 50
 CAST(ROW_NUMBER() OVER (ORDER BY soh.SalesOrderID ASC) AS INT) AS Id,
 soh.SalesOrderID 'OrderID', CAST(soh.OrderDate AS date) 'OrderDate', sod.ProductID, p.Name 'ProductName', pc.Name 'ProductCategory',
 sod.UnitPrice, sod.OrderQty, sod.LineTotal, soh.SalesPersonID, CONCAT(Per.FirstName, ' ', Per.LastName) 'SalesPersonName',
